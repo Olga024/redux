@@ -7,6 +7,7 @@ export type Item = {
 export type ItemState = {
     items: Item[];
     currentItem: Item | null;
+    searchString?: string;
 }
 
 export type Action<T> = {

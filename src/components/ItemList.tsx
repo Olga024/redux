@@ -4,18 +4,32 @@ import { deleteItem, setCurrentItem } from '../store/actions';
 import type { AppState } from '../store';
 
 const ItemList: React.FC = () => {
-    const items = useSelector((state: AppState) => state.items.items);
+    const itemsState = useSelector((state: AppState) => state.items);
+    const { items, searchString } = itemsState;
     const dispatch = useDispatch();
 
     return (
         <ul>
-            {items.map(item => (
-                <li key={item.id}>
-                    {item.name} - {item.description}
-                    <button onClick={() => dispatch(setCurrentItem(item))}>Edit</button>
-                    <button onClick={() => dispatch(deleteItem(item))}>X</button>
-                </li>
-            ))}
+            {items
+                .filter(({ name, description }) => {
+                    let isMatch = false;
+                    if (!searchString || searchString.length < 1) {
+                        isMatch = true;
+                    }
+
+                    if (searchString && (name.includes(searchString) || description.includes(searchString))) {
+                        isMatch = true;
+                    }
+
+                    return isMatch;
+                })
+                .map(item => (
+                    <li key={item.id}>
+                        {item.name} - {item.description}
+                        <button onClick={() => dispatch(setCurrentItem(item))}>Edit</button>
+                        <button onClick={() => dispatch(deleteItem(item))}>X</button>
+                    </li>
+                ))}
         </ul>
     );
 };

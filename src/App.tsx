@@ -3,6 +3,7 @@ import { Provider } from 'react-redux';
 import { store } from './store';
 import ItemList from './components/ItemList';
 import ItemForm from './components/ItemForm';
+import SearchPanel from './components/SearchPanel';
 
 const App: React.FC = () => {
   return (
@@ -10,6 +11,7 @@ const App: React.FC = () => {
       <div>
         <h1>Item Manager</h1>
         <ItemForm />
+        <SearchPanel />
         <ItemList />
       </div>
     </Provider>

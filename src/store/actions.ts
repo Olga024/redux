@@ -4,6 +4,7 @@ export const ADD_ITEM = 'ADD_ITEM';
 export const EDIT_ITEM = 'EDIT_ITEM';
 export const SET_CURRENT_ITEM = 'SET_CURRENT_ITEM';
 export const DELETE_ITEM = 'DELETE_ITEM';
+export const SEARCH_STRING = 'SEARCH_STRING';
 
 export const addItem = (item: Item): Action<Item> => ({
     type: ADD_ITEM,
@@ -24,3 +25,7 @@ export const deleteItem = (item: Item): Action<Item> => ({
     type: DELETE_ITEM,
     payload: item,
 });
+export const setSearchString = (search: string): Action<string> => ({
+    type: SEARCH_STRING,
+    payload: search
+})
