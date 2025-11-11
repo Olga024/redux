@@ -36,7 +36,6 @@ export const itemReducer = (state: ItemState = initialState, action: Action<Item
       return {
         ...state,
         searchString: typeof action.payload != 'string' ? '' : action.payload,
-
       }
 
     default:
